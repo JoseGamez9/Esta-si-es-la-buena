@@ -4,18 +4,7 @@ internal class program {
 
     static void Main(string[] args)
     {
-        /* crear un progama que simule un sistema de inicio de sesion
-         * el usuario debe ingresar un correo con dominio unicaribe.edu.co y su contraseña
-         * el usuario tendra como datos correctos:
-        
-
-          usuario: jangelgamezjimenez@unicaribe.edu.co
-        contraseña: jg12345
-
-
-        * el programa debe permitir maximo 3 intentos, si los datos son correctos debe mostrar "bienvenido a la plataforma unicaribe"
-        - despues de 3 intentos incorrectos, debe mostrar "usuario bloqueado co T.I - UNICARBE 
-        */
+       
         string correoCorrecto = "jangelgamezjimenez@unicaribe.edu.co";
         string passCorrecta = "jg12345";
 
