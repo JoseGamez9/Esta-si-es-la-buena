@@ -1,0 +1,123 @@
+
+using System;
+
+namespace Sistema
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int cantidadArchivos = 0;
+            double espacioDisponible = 0;
+
+         
+            do
+            {
+                Console.Write("Ingrese la cantidad de archivos a descargar: ");
+
+                if (!int.TryParse(Console.ReadLine(), out cantidadArchivos))
+                {
+                    cantidadArchivos = 0;
+                }
+
+                if (cantidadArchivos <= 0)
+                {
+                    Console.WriteLine("Cantidad invalida. Intente nuevamente.");
+                }
+
+            } while (cantidadArchivos <= 0);
+
+          
+            do
+            {
+                Console.Write("Ingrese el espacio disponible en disco (MB): ");
+
+                if (!double.TryParse(Console.ReadLine(), out espacioDisponible))
+                {
+                    espacioDisponible = 0;
+                }
+
+                if (espacioDisponible <= 0)
+                {
+                    Console.WriteLine("Espacio invalido. Debe ser mayor a 0.");
+                }
+
+            } while (espacioDisponible <= 0);
+
+            int archivosDescargados = 0;
+            double totalMb = 0;
+
+           
+            for (int i = 1; i <= cantidadArchivos; i++)
+            {
+                Console.WriteLine($"\nArchivo #{i}");
+                Console.Write("Nombre (escriba 'salir' para detener): ");
+
+                string nombre = (Console.ReadLine() ?? "").Trim();
+
+               
+                if (nombre.Equals("salir", StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine(">> Proceso de descarga cancelado.");
+                    break;
+                }
+
+                
+                if (nombre.Length == 0 || nombre.Length > 20)
+                {
+                    Console.WriteLine(">> Nombre de archivo inválido. Omitido.");
+                    continue;
+                }
+
+                Console.Write("Tamaño en MB: ");
+
+                double tamanio;
+
+                if (!double.TryParse(Console.ReadLine(), out tamanio) || tamanio <= 0)
+                {
+                    Console.WriteLine(">> Tamaño invalido. Archivo omitido.");
+                    continue;
+                }
+
+                
+                if (tamanio > espacioDisponible)
+                {
+                    Console.WriteLine(">> Espacio insuficiente en disco. Descarga detenida.");
+                    break;
+                }
+
+                espacioDisponible -= tamanio;
+
+               
+                string categoria;
+
+                if (tamanio < 1)
+                {
+                    categoria = "Pequeño";
+                }
+                else if (tamanio <= 10)
+                {
+                    categoria = "Mediano";
+                }
+                else
+                {
+                    categoria = "Grande";
+                }
+
+              
+                Console.WriteLine($">> Descargando '{nombre}' ({tamanio:F2} MB)... OK");
+                Console.WriteLine($">> Categoría: {categoria}");
+
+                archivosDescargados++;
+                totalMb += tamanio;
+            }
+
+           
+            Console.WriteLine("\n======= RESUMEN DE DESCARGA =======");
+            Console.WriteLine($"Archivos descargados: {archivosDescargados}");
+            Console.WriteLine($"Total descargado: {totalMb:F2} MB");
+            Console.WriteLine($"Espacio restante: {espacioDisponible:F2} MB");
+            Console.WriteLine("===================================");
+        }
+    }
+}
