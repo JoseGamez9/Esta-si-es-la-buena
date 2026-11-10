@@ -1,0 +1,59 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp3
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+
+            string UsuarioCorrrecto = "RaulJimenez";
+            string ContraseñaCorrecta = "Raul2025";
+
+            string usuario;
+            string contraseña; 
+
+            int intentos = 0;
+            while (intentos < 3)
+            {
+
+                Console.WriteLine(" Ingrese su usuario: ");
+
+                usuario = Console.ReadLine();
+
+                Console.WriteLine(" Ingrese su contraseña: ");
+
+                contraseña = Console.ReadLine();
+
+                if (usuario == UsuarioCorrrecto & contraseña == ContraseñaCorrecta)
+                {
+                    Console.WriteLine(" Conexion establecida con la base de datos.");
+
+                    break;
+
+                }
+                else
+                {
+                    intentos++;
+                    Console.WriteLine("eror de autenticacion. ");
+                    Console.WriteLine("Intentos restantes: " + (3 - intentos));
+                    Console.WriteLine("Intentelo nueva mente.");
+
+
+                }
+                if (intentos == 3)
+                {
+                    Console.WriteLine("=====Conexion bloqueada por seguridad=====");
+                    Console.WriteLine("comuniquese con el administrador del sistema.");
+
+
+
+                }
+            }
+        }
+    }
+}
