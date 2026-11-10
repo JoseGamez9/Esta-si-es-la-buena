@@ -41,7 +41,6 @@ namespace ConsoleApp3
                     intentos++;
                     Console.WriteLine("eror de autenticacion. ");
                     Console.WriteLine("Intentos restantes: " + (3 - intentos));
-                    Console.WriteLine("Intentelo nueva mente.");
 
 
                 }
